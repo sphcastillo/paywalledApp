@@ -4,7 +4,7 @@ import { Link } from 'expo-router';
 export default function UserCard({ user }){
 
   return (
-    <Link href={'/user'} asChild>
+    <Link href={`/user/${user.id}`} asChild>
       <Pressable>
         <ImageBackground 
         style={styles.userCard}
@@ -24,7 +24,7 @@ export default function UserCard({ user }){
                 marginBottom: 5, 
               }}
               >{user.name}</Text>
-            <Text >@{user.handle}</Text>
+            <Text style={{ color: "white" }}>@{user.handle}</Text>
           </View>
         </ImageBackground>
       </Pressable>
