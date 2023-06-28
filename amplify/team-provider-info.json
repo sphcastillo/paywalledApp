@@ -10,6 +10,11 @@
       "StackName": "amplify-paywalledapp-staging-225238",
       "StackId": "arn:aws:cloudformation:us-east-2:485335908138:stack/amplify-paywalledapp-staging-225238/50e18790-153d-11ee-ae23-0262a42932cb",
       "AmplifyAppId": "d1fvf8fz1kjvbj"
+    },
+    "categories": {
+      "auth": {
+        "PaywalledApp": {}
+      }
     }
   }
 }
