@@ -13,7 +13,7 @@ const Post = ({ post }) => {
                     <Text style={{ fontWeight: '600', fontSize: 16, marginBottom: 3 }}>
                         {post.User.name}
                     </Text>
-                    <Text>@{post.User.handle}</Text>
+                    <Text style={{ color: 'gray' }}>@{post.User.handle}</Text>
                 </View>
 
                 <View 
@@ -37,7 +37,7 @@ const Post = ({ post }) => {
                     name="hearto" 
                     size={22} 
                     color="black" 
-                    style={{ marginRight: 10 }}
+                    style={{ marginRight: 15 }}
                 />
 
                 <FontAwesome5 

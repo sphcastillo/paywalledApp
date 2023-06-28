@@ -1,5 +1,5 @@
 import { View, FlatList, Text } from 'react-native';
-import { useRouter, useSearchParams } from 'expo-router';
+import { useSearchParams } from 'expo-router';
 import users from "../../assets/data/users";
 import { useState } from 'react';
 import UserProfileHeader from '../../src/components/UserProfileHeader';
@@ -10,7 +10,6 @@ import { FontAwesome5 } from '@expo/vector-icons';
 const ProfilePage = () => {
     const [isSubscribed, setIsSubscribed] = useState(false);
 
-    const router = useRouter();
     const { id } = useSearchParams();
 
     const user = users.find(u => u.id === id);
@@ -50,7 +49,6 @@ const ProfilePage = () => {
                         Subscribe to see user's posts
                     </Text>
                 </View>
-                
             </View>
         )
     }

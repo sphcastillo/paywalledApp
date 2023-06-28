@@ -44,7 +44,7 @@ const NewPost = () => {
                     name="arrow-back"
                     size={20}
                     color="black"
-                    style={{ marginRight: 8 }}
+                    style={{ marginRight: 10 }}
                 />
                 <Text style={{ fontWeight: '500', fontSize: 17 }}>New post</Text>
             </View>
