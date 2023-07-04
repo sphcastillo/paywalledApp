@@ -3,15 +3,26 @@ import { useState } from 'react';
 import { Feather, Ionicons } from "@expo/vector-icons";
 import * as ImagePicker from 'expo-image-picker';
 import { useRouter } from 'expo-router';
+import { DataStore, Datastore } from 'aws-amplify';
+import { Post } from '../src/models';
+import { useAuthenticator } from "@aws-amplify/ui-react-native";
 
 const NewPost = () => {
     const [text, setText] = useState('');
     const [image, setImage] = useState('');
 
+    const { user } = useAuthenticator();
+
     const router = useRouter();
 
-    const onPost = () => {
+    const onPost = async () => {
         console.warn('Post: ', text);
+        console.log("user.attributes.sub: ", user.attributes.sub);
+        // link the post we are creating with the user that's submitting the post (that is authenticated)
+        await DataStore.save(
+            new Post({ text, likes: 0, userID: user.attributes.sub })
+        );
+        
         setText('');
     }
 
