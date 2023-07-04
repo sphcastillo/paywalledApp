@@ -1,19 +1,28 @@
 import { View, Text, Image } from 'react-native';
 import { Entypo, AntDesign, FontAwesome5 } from '@expo/vector-icons';
+import { useEffect, useState } from 'react';
+import { DataStore } from 'aws-amplify';
+import { User } from "../models";
 
 const Post = ({ post }) => {
+    const [user, setUser] = useState();
+
+    useEffect(() => {
+        DataStore.query(User, post.userID).then(setUser);
+    }, []);
+    
     return(
         <View style={{ marginVertical: 15 }}>
             <View style={{ flexDirection: 'row', alignItems: 'center', padding: 5 }}>
                 <Image 
-                    src={post.User.avatar} 
+                    src={user?.avatar} 
                     style={{ width: 50, aspectRatio: 1, borderRadius: 50, marginRight: 10 }} 
                 />
                 <View>
                     <Text style={{ fontWeight: '600', fontSize: 16, marginBottom: 3 }}>
-                        {post.User.name}
+                        {user?.name}
                     </Text>
-                    <Text style={{ color: 'gray' }}>@{post.User.handle}</Text>
+                    <Text style={{ color: 'gray' }}>@{user?.handle}</Text>
                 </View>
 
                 <View 
@@ -30,7 +39,9 @@ const Post = ({ post }) => {
 
             <Text style={{ margin: 10, lineHeight: 18 }}>{post.text}</Text>
 
-            <Image src={post.image} style={{ width: '100%', aspectRatio: 1 }} />
+            {post.image && (
+                <Image src={post.image} style={{ width: '100%', aspectRatio: 1 }} />
+            )}
 
             <View style={{ margin: 10, flexDirection: 'row' }}>
                 <AntDesign 

@@ -3,20 +3,22 @@ import { useSearchParams } from 'expo-router';
 // import users from "../../assets/data/users";
 import { useState, useEffect } from 'react';
 import UserProfileHeader from '../../src/components/UserProfileHeader';
-import posts from "../../assets/data/posts";
+// import posts from "../../assets/data/posts";
 import Post from '../../src/components/Post';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { DataStore } from 'aws-amplify';
-import { User } from "../../src/models";
+import { User, Post as PostModel } from "../../src/models";
 
 const ProfilePage = () => {
     const [user, setUser] = useState();
+    const [posts, setPosts] = useState([]);
     const [isSubscribed, setIsSubscribed] = useState(false);
 
     const { id } = useSearchParams();
 
     useEffect(() => {
         DataStore.query(User, id).then(setUser);
+        DataStore.query(PostModel, (post) => post.userID.eq(id)).then(setPosts);
     }, [id])
 
     // const user = users.find(u => u.id === id);
@@ -24,6 +26,8 @@ const ProfilePage = () => {
     if(!user) {
         return <Text>User not found!</Text>
     }
+
+    // console.log(JSON.stringify(user, null, 2));
 
     if(!isSubscribed){
         return (
