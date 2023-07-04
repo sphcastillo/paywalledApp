@@ -1,0 +1,12 @@
+{
+  "resourceName": "s3paywalledappstorage2023",
+  "bucketName": "paywalledapp-storage2023",
+  "policyUUID": "2c8ef3cc",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ]
+}

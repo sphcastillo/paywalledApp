@@ -16,5 +16,11 @@ export type AmplifyDependentResourcesAttributes = {
       "UserPoolId": "string",
       "UserPoolName": "string"
     }
+  },
+  "storage": {
+    "s3paywalledappstorage2023": {
+      "BucketName": "string",
+      "Region": "string"
+    }
   }
 }
