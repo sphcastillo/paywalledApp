@@ -16,19 +16,19 @@ const NewPost = () => {
 
     const router = useRouter();
 
+
     const onPost = async () => {
         console.warn('Post: ', text);
         // call uploadImage function before saving to DataStore
         const imageKey = await uploadImage();
 
-        console.log("user.attributes.sub: ", user.attributes.sub);
         // link the post we are creating with the user that's submitting the post (that is authenticated)
         await DataStore.save(
             new Post({ 
                 text, 
                 likes: 0, 
                 userID: user.attributes.sub,
-                image: imageKey 
+                image: imageKey
             })
         );
 
@@ -38,34 +38,34 @@ const NewPost = () => {
 
     async function uploadImage() {
         try {
-            // uri of the image we selected from state
           const response = await fetch(image);
           const blob = await response.blob();
-          const fileKey = `${Crypto.randomUUID()}.png`
+          const fileKey = `${Crypto.randomUUID()}.png`;
           await Storage.put(fileKey, blob, {
-            contentType: 'image/jpeg' // contentType is optional
+              contentType: 'image/jpeg',  // contextType is optional
           });
           return fileKey;
         } catch (err) {
-          console.log('Error uploading file:', err);
+          console.log('ATTENTION: Error uploading file:', err);
         }
       }
 
-    const pickImage = async () => {
+      const pickImage = async () => {
         // No permissions request is necessary for launching the image library
         let result = await ImagePicker.launchImageLibraryAsync({
-            mediaTypes: ImagePicker.MediaTypeOptions.Images,
-            allowsEditing: true,
-            aspect: [4,3],
-            quality: 1,
+          mediaTypes: ImagePicker.MediaTypeOptions.Images,
+          allowsEditing: true,
+          aspect: [4, 3],
+          quality: 1,
         });
 
+        delete result.cancelled;
         console.log("result: ", result);
 
-        if(!result.canceled){
+        if (!result.canceled) {
             setImage(result.assets[0].uri);
         }
-    };
+      };
 
     return (
         <SafeAreaView style={{ margin: 10 }}>
@@ -103,7 +103,7 @@ const NewPost = () => {
             </View>
 
             {image &&
-                <Image src={image} style={{ width: '100%', aspectRatio: 1 }} />
+                <Image source={{ uri: image }} style={{ width: '100%', aspectRatio: 1 }} />
             }
 
             <Button title="Post" onPress={onPost}/>

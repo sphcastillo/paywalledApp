@@ -14,6 +14,12 @@
     "categories": {
       "auth": {
         "PaywalledApp": {}
+      },
+      "storage": {
+        "paywalledapp027d9a0e": {
+          "bucketName": "paywalledapp-storage2023225238-staging",
+          "region": "us-east-2"
+        }
       }
     }
   }

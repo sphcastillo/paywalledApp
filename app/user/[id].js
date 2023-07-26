@@ -28,6 +28,7 @@ const ProfilePage = () => {
     }
 
     // console.log(JSON.stringify(user, null, 2));
+    // console.log("posts: ", posts);
 
     if(!isSubscribed){
         return (

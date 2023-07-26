@@ -6,20 +6,24 @@ import { User } from "../models";
 
 const Post = ({ post }) => {
     const [user, setUser] = useState();
-    const [imageUri, setImageUri] =  useState();
+    const [imageURI, setImageURI] = useState();
+
 
     useEffect(() => {
         DataStore.query(User, post.userID).then(setUser);
     }, []);
 
     useEffect(() => {
+        // only if post.image is define, then you store it
         if(post.image){
-            Storage.get(post.image).then(setImageUri);
+            Storage.get(post.image).then(setImageURI);
         }
         
-    }, [post.image]);
+    }, [post.image]
+    );
 
     return(
+
         <View style={{ marginVertical: 15 }}>
             <View style={{ flexDirection: 'row', alignItems: 'center', padding: 5 }}>
                 <Image 
@@ -47,8 +51,8 @@ const Post = ({ post }) => {
 
             <Text style={{ margin: 10, lineHeight: 18 }}>{post.text}</Text>
 
-            {imageUri && (
-                <Image src={imageUri} style={{ width: '100%', aspectRatio: 1 }} />
+            {imageURI && (
+                <Image src={imageURI} style={{ width: '100%', aspectRatio: 1 }} />
             )}
 
             <View style={{ margin: 10, flexDirection: 'row' }}>
