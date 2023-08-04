@@ -103,7 +103,7 @@ const NewPost = () => {
             </View>
 
             {image &&
-                <Image source={{ uri: image }} style={{ width: '100%', aspectRatio: 1 }} />
+                <Image src={image} style={{ width: '100%', aspectRatio: 1 }} />
             }
 
             <Button title="Post" onPress={onPost}/>
